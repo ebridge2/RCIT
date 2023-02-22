@@ -22,7 +22,7 @@
 #' RCIT(x,y,z,seed=2);
 
 
-RCoT <- function(x,y,z=NULL,approx="lpd4",num_f=100,num_f2=5,seed=NULL){
+RCoT <- function(x,y,z=NULL,approx="perm",num_f=100,num_f2=5,seed=NULL, nrep=1000){
   
   if (length(z)==0){
     out=RIT(x,y,approx=approx,seed=seed);
@@ -101,7 +101,7 @@ RCoT <- function(x,y,z=NULL,approx="lpd4",num_f=100,num_f2=5,seed=NULL){
       Cxy_z = cov(res_x, res_y);
       Sta = r*sum(Cxy_z^2);
 
-      nperm =1000;
+      nperm =nrep;
 
       Stas = c();
       for (ps in 1:nperm){
@@ -151,7 +151,7 @@ RCoT <- function(x,y,z=NULL,approx="lpd4",num_f=100,num_f2=5,seed=NULL){
 
     if (p<0) p=0;
 
-    out=list(p=p,Sta=Sta);
+    out=list(pvalue=p,stat=Sta);
     return(out)
   }
   

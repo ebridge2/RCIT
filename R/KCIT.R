@@ -6,7 +6,7 @@
 #' @return The p-value \code{p}
 #' @export
 
-KCIT <- function(x,y,z,Bootstrap=TRUE){
+KCIT <- function(x,y,z,Bootstrap=TRUE, nrep=1000){
 
   if( length(z)==0 || missing(z) ){
     p_val = U_KCI(x,y);
@@ -99,7 +99,7 @@ KCIT <- function(x,y,z,Bootstrap=TRUE){
     }
 
     if (Bootstrap){
-      T_BS=5000;
+      T_BS=nrep;
       IF_unbiased=TRUE;
 
       list_uu = eigen(uu_prod);
